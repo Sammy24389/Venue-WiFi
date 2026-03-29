@@ -9,7 +9,8 @@
     "client": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "vercel-build": "vite build"
   },
   "dependencies": {
     "express": "^4.18.2",
