@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Venue WiFi - Connect Now</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      color: #1e293b;
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: #64748b;
+      font-size: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .hint {
+      font-size: 0.875rem;
+      color: #64748b;
+      margin-top: 0.5rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .alert {
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+    }
+
+    .alert-success {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .alert-error {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 0.5rem;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .steps {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      background: #667eea;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .step-text {
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    .step-text strong {
+      color: #1e293b;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <div class="logo-icon">📶</div>
+      <h1>Venue WiFi Access</h1>
+      <p class="subtitle">Free internet for 24 hours</p>
+    </div>
+
+    <div id="message"></div>
+
+    <form id="accessForm">
+      <div class="form-group">
+        <label for="macAddress">Device MAC Address</label>
+        <input 
+          type="text" 
+          id="macAddress" 
+          placeholder="00:1A:2B:3C:4D:5E"
+          maxlength="17"
+          required
+        >
+        <p class="hint">
+          <strong>iOS:</strong> Settings → Privacy → WiFi Address<br>
+          <strong>Android:</strong> Settings → About → WiFi MAC
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="deviceName">Device Name (Optional)</label>
+        <input 
+          type="text" 
+          id="deviceName" 
+          placeholder="e.g., John's iPhone"
+        >
+      </div>
+
+      <button type="submit" id="submitBtn">
+        Get WiFi Access
+      </button>
+    </form>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-text">
+          <strong>Enter your MAC address</strong>
+          Find it in your device settings
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-text">
+          <strong>Click "Get WiFi Access"</strong>
+          Instant activation for your device
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-text">
+          <strong>Connect to WiFi</strong>
+          Enjoy 24 hours of internet access
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('accessForm');
+    const macInput = document.getElementById('macAddress');
+    const deviceInput = document.getElementById('deviceName');
+    const submitBtn = document.getElementById('submitBtn');
+    const messageDiv = document.getElementById('message');
+
+    // Format MAC address as user types
+    macInput.addEventListener('input', (e) => {
+      let value = e.target.value.replace(/[^a-fA-F0-9]/g, '');
+      let formatted = '';
+      for (let i = 0; i < value.length && i < 12; i++) {
+        if (i > 0 && i % 2 === 0) formatted += ':';
+        formatted += value[i];
+      }
+      e.target.value = formatted.toUpperCase();
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const mac = macInput.value.trim();
+      const device = deviceInput.value.trim() || 'Customer Device';
+      
+      if (!mac) {
+        showMessage('Please enter your MAC address', 'error');
+        return;
+      }
+
+      setLoading(true);
+
+      try {
+        const response = await fetch('/api/access/request', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ macAddress: mac, deviceName: device })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Request failed');
+        }
+
+        if (data.existing) {
+          showMessage(`✅ Access already active! Expires: ${new Date(data.expiresAt).toLocaleString()}`, 'success');
+        } else {
+          showMessage(`✅ Access granted! Valid for 24 hours.<br>Expires: ${new Date(data.expiresAt).toLocaleString()}`, 'success');
+        }
+        
+        form.reset();
+      } catch (error) {
+        showMessage(`❌ Error: ${error.message}`, 'error');
+      } finally {
+        setLoading(false);
+      }
+    });
+
+    function showMessage(html, type) {
+      messageDiv.innerHTML = `<div class="alert alert-${type}">${html}</div>`;
+      setTimeout(() => {
+        messageDiv.innerHTML = '';
+      }, 10000);
+    }
+
+    function setLoading(loading) {
+      submitBtn.disabled = loading;
+      if (loading) {
+        submitBtn.innerHTML = '<span class="spinner"></span> Granting Access...';
+      } else {
+        submitBtn.textContent = 'Get WiFi Access';
+      }
+    }
+  </script>
+</body>
+</html>
